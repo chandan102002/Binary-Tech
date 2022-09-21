@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,14 +27,14 @@ import lombok.Setter;
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long Customer_Id;
-	private long AccID;
+	private long id;
+	private long AccountID;
 	private String name;
 	private String address;
 	private long phone;
 	private String email;
 
-	@ManyToMany(mappedBy = "customer")
-	private List<Account> account = new ArrayList<>();
+	@ManyToMany(mappedBy = "customers", fetch = FetchType.EAGER)
+	private List<Account> accounts = new ArrayList<>();
 
 }

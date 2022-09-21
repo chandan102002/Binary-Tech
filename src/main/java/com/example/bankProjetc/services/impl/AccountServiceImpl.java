@@ -37,9 +37,10 @@ public class AccountServiceImpl implements AccountService {
 		Account existAccount = accountRepo.findById(AccountId)
 				.orElseThrow(() -> new AccountNotFoundException(AccountId, "Account"));
 
-		existAccount.setAccount_Id(account.getAccount_Id());
+		existAccount.setId(account.getId());
 		existAccount.setCurrentBalance(account.getCurrentBalance());
 		existAccount.setOpeningDate(account.getOpeningDate());
+		existAccount.setCustomers(account.getCustomers());
 		return existAccount;
 	}
 

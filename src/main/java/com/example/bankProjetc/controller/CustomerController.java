@@ -22,13 +22,13 @@ public class CustomerController {
 	CustomerService customerService;
 
 	@PostMapping("/post")
-	public ResponseEntity<Customer> saveEmployee(@RequestBody Customer employee) {
+	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
 
-		return new ResponseEntity<Customer>(customerService.saveCustomer(employee), HttpStatus.CREATED);
+		return new ResponseEntity<Customer>(customerService.saveCustomer(customer), HttpStatus.CREATED);
 	}
 
 	@GetMapping("/get")
-	public List<Customer> getAllEmployees() {
+	public List<Customer> getAllCustomers() {
 		return customerService.getAllCustomers();
 	}
 
@@ -48,7 +48,6 @@ public class CustomerController {
 	public ResponseEntity<String> deleteCustomer(@PathVariable("id") long id) {
 
 		customerService.deleteCustomer(id);
-
 		return new ResponseEntity<String>("Customer deleted successfully", HttpStatus.OK);
 
 	}

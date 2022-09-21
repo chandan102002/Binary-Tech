@@ -27,13 +27,13 @@ import lombok.Setter;
 public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long Account_Id;
+	private long id;
 	private Date openingDate;
 	private long currentBalance;
 	
 	@ManyToMany
-	@JoinTable(name="customer_account",joinColumns = @JoinColumn(name="Account_Id"),
-	inverseJoinColumns = @JoinColumn(name="Customer_Id"))
-	private List<Customer> customer= new ArrayList<>(); 
+	@JoinTable(name="customer_account",joinColumns = @JoinColumn(name="Account_id"),
+	inverseJoinColumns = @JoinColumn(name="Customer_id"))
+	private List<Customer> customers= new ArrayList<>(); 
 
 }
