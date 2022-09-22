@@ -22,30 +22,30 @@ public class AccountController
 	@Autowired
 	AccountService accountService;
 
-	@PostMapping("/save")
+	@PostMapping("/accounts")
 	public ResponseEntity<Account> createAccount(@RequestBody Account account) {
 
 		return new ResponseEntity<Account>(accountService.createAccount(account), HttpStatus.CREATED);
 	}
 
-	@GetMapping("/getAccount")
+	@GetMapping("/accounts")
 	public List<Account> getAllAccounts() {
 		return accountService.getAllAccounts();
 	}
 
 	// http://localhost:8080/get/1
-	@GetMapping("/getAccount/{id}")
+	@GetMapping("/accounts/{id}")
 	public ResponseEntity<Account> getAccountByAccountId(@PathVariable("id") long AccountId) {
 		return new ResponseEntity<Account>(accountService.getAccountByAccountId(AccountId), HttpStatus.OK);
 
 	}
 
-	@PutMapping("/updateAccount/{id}")
+	@PutMapping("/accounts/{id}")
 	public ResponseEntity<Account> updateCustomer(@PathVariable("id") long AccountId, @RequestBody Account account) {
 		return new ResponseEntity<Account>(accountService.updateAccount(account, AccountId), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/deleteAccount/{id}")
+	@DeleteMapping("/accounts/{id}")
 	public ResponseEntity<String> deleteAccount(@PathVariable("id") long AccountId) {
 
 		accountService.deleteAccount(AccountId);
