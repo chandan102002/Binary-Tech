@@ -30,6 +30,7 @@ public class Account {
 	private long id;
 	private Date openingDate;
 	private long currentBalance;
+	private String bankaddress;
 	
 	@ManyToMany
 	@JoinTable(name="customer_account",joinColumns = @JoinColumn(name="Account_id"),
