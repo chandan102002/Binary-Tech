@@ -34,7 +34,7 @@ public class Customer {
 	private long phone;
 	private String email;
 
-	@ManyToMany(mappedBy = "customers", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "customers", fetch = FetchType.LAZY)
 	private List<Account> accounts = new ArrayList<>();
 
 }

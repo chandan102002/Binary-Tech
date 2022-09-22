@@ -23,17 +23,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Account")
-public class Account {
+@Table(name = "Transation_details")
+public class Transation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	private Date openingDate;
-	private long currentBalance;
+	private long transation_id;
+	private Date transation_date;
+	private float amout_of_transation;
 	private String bankaddress;
 	
 	@ManyToMany
-	@JoinTable(name="customer_account",joinColumns = @JoinColumn(name="Account_id"),
+	@JoinTable(name="customers_transations",joinColumns = @JoinColumn(name="Customers_Transation_id"),
 	inverseJoinColumns = @JoinColumn(name="Customer_id"))
 	private List<Customer> customers= new ArrayList<>(); 
 
