@@ -1,7 +1,6 @@
 package com.example.bankProjetc.services.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,7 +42,6 @@ public class CustomerServiceImpl implements CustomerService {
 		existCustomer.setName(customer.getName());
 		existCustomer.setPhone(customer.getPhone());
 		existCustomer.setAccounts(customer.getAccounts());
-	
 
 		// save existing employee to db
 		customerRepository.save(existCustomer);
