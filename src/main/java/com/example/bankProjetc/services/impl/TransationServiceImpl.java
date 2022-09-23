@@ -27,7 +27,6 @@ public class TransationServiceImpl implements TransationService {
 
 	@Override
 	public Transation findTransationByTransationId(long TransationId) {
-
 		return transationRepo.findById(TransationId)
 				.orElseThrow(() -> new TransationNotFoundException(TransationId, "Transation"));
 	}

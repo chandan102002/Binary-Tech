@@ -17,7 +17,6 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account createAccount(Account account) {
-
 		return accountRepo.save(account);
 	}
 
@@ -28,7 +27,6 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account getAccountByAccountId(long AccountId) {
-
 		return accountRepo.findById(AccountId).orElseThrow(() -> new AccountNotFoundException(AccountId, "Account"));
 	}
 

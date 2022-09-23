@@ -18,7 +18,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,7 +27,7 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private long AccountID;
+	private long accountID;
 	private String name;
 	private String address;
 	private long phone;

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,10 +33,9 @@ public class Transation {
 	private Date transation_date;
 	private float amout_of_transation;
 	private String bankaddress;
-	
-	@ManyToMany
-	@JoinTable(name="customers_transations",joinColumns = @JoinColumn(name="Customers_Transation_id"),
-	inverseJoinColumns = @JoinColumn(name="Customer_id"))
-	private List<Customer> customers= new ArrayList<>(); 
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "customers_transations", joinColumns = @JoinColumn(name = "Customers_Transation_id", referencedColumnName = "transation_id"), inverseJoinColumns = @JoinColumn(name = "Customer_id", referencedColumnName = "id"))
+	private List<Customer> customers = new ArrayList<>();
 
 }

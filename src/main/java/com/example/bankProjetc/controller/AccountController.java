@@ -17,8 +17,7 @@ import com.example.bankProjetc.model.Account;
 import com.example.bankProjetc.services.AccountService;
 
 @RestController
-public class AccountController 
-{
+public class AccountController {
 	@Autowired
 	AccountService accountService;
 
