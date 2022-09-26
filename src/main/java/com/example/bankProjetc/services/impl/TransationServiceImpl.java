@@ -39,7 +39,7 @@ public class TransationServiceImpl implements TransationService {
 		existTransation.setTransation_id(transation.getTransation_id());
 		existTransation.setAmout_of_transation(transation.getAmout_of_transation());
 		existTransation.setBankaddress(transation.getBankaddress());
-		// existTransation.setCustomers(transation.getCustomers());
+		
 
 		return existTransation;
 	}

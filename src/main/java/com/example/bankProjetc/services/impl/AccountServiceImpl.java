@@ -39,7 +39,7 @@ public class AccountServiceImpl implements AccountService {
 		existAccount.setCurrentBalance(account.getCurrentBalance());
 		existAccount.setOpeningDate(account.getOpeningDate());
 		existAccount.setBankaddress(account.getBankaddress());
-		// existAccount.setCustomers(account.getCustomers());
+		
 
 		return existAccount;
 	}
