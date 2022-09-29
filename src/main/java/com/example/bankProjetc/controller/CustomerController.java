@@ -1,12 +1,12 @@
 package com.example.bankProjetc.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -22,9 +22,9 @@ public class CustomerController {
 	CustomerService customerService;
 
 	@PostMapping("/customer")
-	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
+	public Customer saveCustomer(@RequestBody Customer customer) {
 
-		return new ResponseEntity<Customer>(customerService.saveCustomer(customer), HttpStatus.CREATED);
+		return customerService.saveCustomer(customer);
 	}
 
 	@GetMapping("/customers")
@@ -47,7 +47,7 @@ public class CustomerController {
 	@DeleteMapping("/customer/{id}")
 	public ResponseEntity<String> deleteCustomer(@PathVariable("id") long id) {
 
-		customerService.deleteCustomer(id);
+        customerService.deleteCustomer(id);
 		return new ResponseEntity<String>("Customer deleted successfully", HttpStatus.OK);
 
 	}

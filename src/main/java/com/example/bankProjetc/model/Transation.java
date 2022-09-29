@@ -1,6 +1,5 @@
 package com.example.bankProjetc.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -36,6 +35,6 @@ public class Transation {
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "customers_transations", joinColumns = @JoinColumn(name = "Customers_Transation_id", referencedColumnName = "transation_id"), inverseJoinColumns = @JoinColumn(name = "Customer_id", referencedColumnName = "id"))
-	private List<Customer> customers = new ArrayList<>();
+	private List<Customer> customers;
 
 }

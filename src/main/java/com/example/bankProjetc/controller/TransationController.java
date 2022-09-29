@@ -31,10 +31,11 @@ public class TransationController {
 		return transatioService.findAllTransations();
 	}
 
-	@GetMapping("/transactions/{id}")
-	public ResponseEntity<Transation> getTransationsById(@PathVariable("id") long TransationId) {
+	@GetMapping("/transations/{id}")
+	public ResponseEntity<Transation> getTransationById(@PathVariable("id") long TransationId) {
 		return new ResponseEntity<Transation>(transatioService.findTransationByTransationId(TransationId),
 				HttpStatus.OK);
+
 	}
 
 	@PutMapping("/transation/{id}")
@@ -47,7 +48,7 @@ public class TransationController {
 	@DeleteMapping("/transation/{id}")
 	public ResponseEntity<String> deleteTransation(@PathVariable("id") long TransationId) {
 		transatioService.deleteTransations(TransationId);
-		return new ResponseEntity<String>("Transation of given transation id is deleted....", HttpStatus.OK);
+		return new ResponseEntity<String>("Transation of given id is deleted....", HttpStatus.OK);
 	}
 
 }

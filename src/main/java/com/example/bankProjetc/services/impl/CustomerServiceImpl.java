@@ -42,6 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
 		existCustomer.setName(customer.getName());
 		existCustomer.setPhone(customer.getPhone());
 		existCustomer.setAccounts(customer.getAccounts());
+	//	existCustomer.setTransation(customer.getTransation());
 
 		// save existing employee to db
 		customerRepository.save(existCustomer);

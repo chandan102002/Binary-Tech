@@ -3,6 +3,7 @@ package com.example.bankProjetc.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,7 +35,11 @@ public class Customer {
 	private long phone;
 	private String email;
 
-	@ManyToMany(mappedBy = "customers", fetch = FetchType.LAZY)
-	private List<Account> accounts = new ArrayList<>();
+	@JsonIgnore
+	@ManyToMany(mappedBy = "customers", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+	private List<Account> accounts= new ArrayList<Account>();;
+	
+//	@ManyToMany(mappedBy = "customers", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+//	private List<Transation> transation= new ArrayList<Transation>();
 
 }
