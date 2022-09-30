@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankProjetc.Views.Views;
 import com.example.bankProjetc.model.Account;
 import com.example.bankProjetc.services.AccountService;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 public class AccountController {
@@ -22,7 +24,7 @@ public class AccountController {
 	AccountService accountService;
 
 	@PostMapping("/accounts")
-	public ResponseEntity<Account> createAccount(@RequestBody Account account) {
+	public ResponseEntity<Account> createAccount(@RequestBody @JsonView(value = Views.AccountView.post.class) Account account) {
 
 		return new ResponseEntity<Account>(accountService.createAccount(account), HttpStatus.CREATED);
 	}

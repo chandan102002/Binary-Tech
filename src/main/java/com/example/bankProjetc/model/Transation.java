@@ -14,6 +14,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.example.bankProjetc.Views.Views;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,9 +31,16 @@ import lombok.Setter;
 public class Transation {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(value = Views.TransactionView.post.class)
 	private long transation_id;
+	
+	@JsonView(value = Views.TransactionView.post.class)
 	private Date transation_date;
+	
+	@JsonView(value = Views.TransactionView.post.class)
 	private float amout_of_transation;
+	
+	@JsonView(value = Views.TransactionView.post.class)
 	private String bankaddress;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

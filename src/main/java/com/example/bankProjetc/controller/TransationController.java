@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankProjetc.Views.Views;
 import com.example.bankProjetc.model.Transation;
 import com.example.bankProjetc.services.TransationService;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 public class TransationController {
@@ -22,7 +24,7 @@ public class TransationController {
 	TransationService transatioService;
 
 	@PostMapping("/transaction")
-	public ResponseEntity<Transation> createTransation(@RequestBody Transation transation) {
+	public ResponseEntity<Transation> createTransation(@RequestBody @JsonView(value = Views.TransactionView.post.class) Transation transation) {
 		return new ResponseEntity<Transation>(transatioService.createTranation(transation), HttpStatus.OK);
 	}
 

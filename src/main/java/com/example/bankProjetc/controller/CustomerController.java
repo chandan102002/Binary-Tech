@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankProjetc.Views.Views;
 import com.example.bankProjetc.model.Customer;
 import com.example.bankProjetc.services.CustomerService;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 public class CustomerController {
@@ -22,7 +24,7 @@ public class CustomerController {
 	CustomerService customerService;
 
 	@PostMapping("/customer")
-	public Customer saveCustomer(@RequestBody Customer customer) {
+	public Customer saveCustomer(@RequestBody @JsonView(value = Views.CustomerView.post.class) Customer customer) {
 
 		return customerService.saveCustomer(customer);
 	}

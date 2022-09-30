@@ -12,7 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.example.bankProjetc.Views.Views;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,11 +30,23 @@ import lombok.Setter;
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	@JsonView(value = Views.CustomerView.post.class)
 	private long id;
+	
+	@JsonView(value = Views.CustomerView.post.class)
 	private long accountID;
+	
+	@JsonView(value = Views.CustomerView.post.class)
 	private String name;
+	
+	@JsonView(value = Views.CustomerView.post.class)
 	private String address;
+	
+	@JsonView(value = Views.CustomerView.post.class)
 	private long phone;
+	
+	@JsonView(value = Views.CustomerView.post.class)
 	private String email;
 
 	@JsonIgnore
