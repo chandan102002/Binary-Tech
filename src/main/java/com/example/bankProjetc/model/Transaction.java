@@ -14,7 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.example.bankProjetc.Views.Views;
+import com.example.bankProjetc.Views.TransactionView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import lombok.AllArgsConstructor;
@@ -27,24 +27,24 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Transation_details")
-public class Transation {
+@Table(name = "Transaction")
+public class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView(value = Views.TransactionView.post.class)
-	private long transation_id;
+	@JsonView(value =TransactionView.post.class)
+	private long id;
 	
-	@JsonView(value = Views.TransactionView.post.class)
-	private Date transation_date;
+	@JsonView(value =TransactionView.post.class)
+	private Date date;
 	
-	@JsonView(value = Views.TransactionView.post.class)
-	private float amout_of_transation;
+	@JsonView(value =TransactionView.post.class)
+	private float amout;
 	
-	@JsonView(value = Views.TransactionView.post.class)
+	@JsonView(value =TransactionView.post.class)
 	private String bankaddress;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "customers_transations", joinColumns = @JoinColumn(name = "Customers_Transation_id", referencedColumnName = "transation_id"), inverseJoinColumns = @JoinColumn(name = "Customer_id", referencedColumnName = "id"))
+	@JoinTable(name = "customers_transactions", joinColumns = @JoinColumn(name = "Customers_Transaction_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "Customer_id", referencedColumnName = "id"))
 	private List<Customer> customers;
 
 }

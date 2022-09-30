@@ -26,28 +26,27 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public Account getAccountByAccountId(long AccountId) {
-		return accountRepo.findById(AccountId).orElseThrow(() -> new AccountNotFoundException(AccountId, "Account"));
+	public Account getAccountById(long Id) {
+		return accountRepo.findById(Id).orElseThrow(() -> new AccountNotFoundException(Id, "Account"));
 	}
 
 	@Override
-	public Account updateAccount(Account account, long AccountId) {
-		Account existAccount = accountRepo.findById(AccountId)
-				.orElseThrow(() -> new AccountNotFoundException(AccountId, "Account"));
+	public Account updateAccount(Account account, long Id) {
+		Account existAccount = accountRepo.findById(Id)
+				.orElseThrow(() -> new AccountNotFoundException(Id, "Account"));
 
 		existAccount.setId(account.getId());
 		existAccount.setCurrentBalance(account.getCurrentBalance());
 		existAccount.setOpeningDate(account.getOpeningDate());
 		existAccount.setBankaddress(account.getBankaddress());
-		
 
 		return existAccount;
 	}
 
 	@Override
-	public void deleteAccount(long AccountId) {
-		accountRepo.findById(AccountId).orElseThrow(() -> new AccountNotFoundException(AccountId, "Account"));
-		accountRepo.deleteById(AccountId);
+	public void deleteAccount(long Id) {
+		accountRepo.findById(Id).orElseThrow(() -> new AccountNotFoundException(Id, "Account"));
+		accountRepo.deleteById(Id);
 	}
 
 }

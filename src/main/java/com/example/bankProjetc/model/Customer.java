@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.example.bankProjetc.Views.Views;
+import com.example.bankProjetc.Views.CustomerView;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -26,34 +26,31 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "Bank_Customer")
+@Table(name = "Customer")
 public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
-	@JsonView(value = Views.CustomerView.post.class)
+	@JsonView(value = CustomerView.post.class)
 	private long id;
 	
-	@JsonView(value = Views.CustomerView.post.class)
-	private long accountID;
+	@JsonView(value = CustomerView.post.class)
+	private long accountid;
 	
-	@JsonView(value = Views.CustomerView.post.class)
+	@JsonView(value = CustomerView.post.class)
 	private String name;
 	
-	@JsonView(value = Views.CustomerView.post.class)
+	@JsonView(value = CustomerView.post.class)
 	private String address;
 	
-	@JsonView(value = Views.CustomerView.post.class)
+	@JsonView(value = CustomerView.post.class)
 	private long phone;
 	
-	@JsonView(value = Views.CustomerView.post.class)
+	@JsonView(value = CustomerView.post.class)
 	private String email;
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "customers", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
 	private List<Account> accounts= new ArrayList<Account>();;
 	
-//	@ManyToMany(mappedBy = "customers", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-//	private List<Transation> transation= new ArrayList<Transation>();
-
 }

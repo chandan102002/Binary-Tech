@@ -14,7 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import com.example.bankProjetc.Views.Views;
+import com.example.bankProjetc.Views.AccountView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import lombok.AllArgsConstructor;
@@ -31,21 +31,21 @@ import lombok.Setter;
 public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	@JsonView(value=Views.AccountView.post.class)
+
+	@JsonView(value = AccountView.post.class)
 	private long id;
-	
-	@JsonView(value=Views.AccountView.post.class)
+
+	@JsonView(value = AccountView.post.class)
 	private Date openingDate;
-	
-	@JsonView(value=Views.AccountView.post.class)
+
+	@JsonView(value = AccountView.post.class)
 	private long currentBalance;
-	
-	@JsonView(value=Views.AccountView.post.class)
+
+	@JsonView(value = AccountView.post.class)
 	private String bankaddress;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "customer_account", joinColumns = @JoinColumn(name = "Account_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "Customer_id", referencedColumnName = "id"))
+	@JoinTable(name = "customer_account", joinColumns = @JoinColumn(name = "account_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "id"))
 	private List<Customer> customers = new ArrayList<Customer>();
 
 }

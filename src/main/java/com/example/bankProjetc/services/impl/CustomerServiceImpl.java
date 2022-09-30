@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.bankProjetc.exception.ResourseNotFoundException;
+import com.example.bankProjetc.exception.CustomerNotFoundException;
 import com.example.bankProjetc.model.Customer;
 import com.example.bankProjetc.repository.CustomerRepository;
 import com.example.bankProjetc.services.CustomerService;
@@ -26,25 +26,23 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Customer getCustomerByCustomerId(long id) {
-		return customerRepository.findById(id).orElseThrow(() -> new ResourseNotFoundException("Customer", id));
+	public Customer getCustomerById(long id) {
+		return customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException("Customer", id));
 	}
 
 	@Override
 	public Customer updateCustomer(Customer customer, long id) {
 		Customer existCustomer = customerRepository.findById(id)
-				.orElseThrow(() -> new ResourseNotFoundException("Customer", id));
+				.orElseThrow(() -> new CustomerNotFoundException("Customer", id));
 
 		existCustomer.setId(customer.getId());
-		existCustomer.setAccountID(customer.getAccountID());
+		existCustomer.setAccountid(customer.getAccountid());
 		existCustomer.setAddress(customer.getAddress());
 		existCustomer.setEmail(customer.getEmail());
 		existCustomer.setName(customer.getName());
 		existCustomer.setPhone(customer.getPhone());
 		existCustomer.setAccounts(customer.getAccounts());
-	//	existCustomer.setTransation(customer.getTransation());
 
-		// save existing employee to db
 		customerRepository.save(existCustomer);
 		return existCustomer;
 
@@ -52,7 +50,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void deleteCustomer(long id) {
-		customerRepository.findById(id).orElseThrow(() -> new ResourseNotFoundException("Customer", id));
+		customerRepository.findById(id).orElseThrow(() -> new CustomerNotFoundException("Customer", id));
 		customerRepository.deleteById(id);
 	}
 }

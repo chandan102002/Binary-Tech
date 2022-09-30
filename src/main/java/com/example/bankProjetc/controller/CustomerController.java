@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.bankProjetc.Views.Views;
+import com.example.bankProjetc.Views.CustomerView;
 import com.example.bankProjetc.model.Customer;
 import com.example.bankProjetc.services.CustomerService;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -23,8 +23,8 @@ public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 
-	@PostMapping("/customer")
-	public Customer saveCustomer(@RequestBody @JsonView(value = Views.CustomerView.post.class) Customer customer) {
+	@PostMapping("/customers")
+	public Customer saveCustomer(@RequestBody @JsonView(value = CustomerView.post.class) Customer customer) {
 
 		return customerService.saveCustomer(customer);
 	}
@@ -34,19 +34,18 @@ public class CustomerController {
 		return customerService.getAllCustomers();
 	}
 
-	// http://localhost:8080/get/1
-	@GetMapping("/customer/{id}")
+	@GetMapping("/customers/{id}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable("id") long id) {
-		return new ResponseEntity<Customer>(customerService.getCustomerByCustomerId(id), HttpStatus.OK);
+		return new ResponseEntity<Customer>(customerService.getCustomerById(id), HttpStatus.OK);
 
 	}
 
-	@PutMapping("/customer/{id}")
+	@PutMapping("/customers/{id}")
 	public ResponseEntity<Customer> updateCustomer(@PathVariable("id") long id, @RequestBody Customer customer) {
 		return new ResponseEntity<Customer>(customerService.updateCustomer(customer, id), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/customer/{id}")
+	@DeleteMapping("/customers/{id}")
 	public ResponseEntity<String> deleteCustomer(@PathVariable("id") long id) {
 
         customerService.deleteCustomer(id);

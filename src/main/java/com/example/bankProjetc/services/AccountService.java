@@ -8,10 +8,10 @@ public interface AccountService {
 
 	List<Account> getAllAccounts();
 
-	Account getAccountByAccountId(long AccountId);
+	Account getAccountById(long Id);
 
-	Account updateAccount(Account account, long AccountId);
+	Account updateAccount(Account account, long Id);
 
-	void deleteAccount(long AccountId);
+	void deleteAccount(long Id);
 
 }
