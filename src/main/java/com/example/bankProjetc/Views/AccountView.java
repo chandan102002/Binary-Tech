@@ -9,4 +9,7 @@ public interface AccountView {
 
 	}
 
+	public static interface get{
+		
+	}
 }

@@ -18,13 +18,9 @@ import com.example.bankProjetc.Views.TransactionView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Transaction")
@@ -42,9 +38,63 @@ public class Transaction {
 	
 	@JsonView(value =TransactionView.post.class)
 	private String bankaddress;
+	
+	private boolean isdeleted = Boolean.FALSE;
+
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "customers_transactions", joinColumns = @JoinColumn(name = "Customers_Transaction_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "Customer_id", referencedColumnName = "id"))
 	private List<Customer> customers;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public float getAmout() {
+		return amout;
+	}
+
+	public void setAmout(float amout) {
+		this.amout = amout;
+	}
+
+	public String getBankaddress() {
+		return bankaddress;
+	}
+
+	public void setBankaddress(String bankaddress) {
+		this.bankaddress = bankaddress;
+	}
+
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
+	}
+
+	public boolean isIsdeleted() {
+		return isdeleted;
+	}
+
+	public void setIsdeleted(boolean isdeleted) {
+		this.isdeleted = isdeleted;
+	}
+	
+	
+
 
 }

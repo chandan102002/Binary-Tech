@@ -23,23 +23,27 @@ public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 
+	@JsonView(CustomerView.post.class)
 	@PostMapping("/customers")
-	public Customer saveCustomer(@RequestBody @JsonView(value = CustomerView.post.class) Customer customer) {
+	public Customer saveCustomer(@RequestBody Customer customer) {
 
 		return customerService.saveCustomer(customer);
 	}
 
+	@JsonView(CustomerView.get.class)
 	@GetMapping("/customers")
 	public List<Customer> getAllCustomers() {
 		return customerService.getAllCustomers();
 	}
 
+	@JsonView(CustomerView.get.class)
 	@GetMapping("/customers/{id}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable("id") long id) {
 		return new ResponseEntity<Customer>(customerService.getCustomerById(id), HttpStatus.OK);
 
 	}
 
+	@JsonView(CustomerView.put.class)
 	@PutMapping("/customers/{id}")
 	public ResponseEntity<Customer> updateCustomer(@PathVariable("id") long id, @RequestBody Customer customer) {
 		return new ResponseEntity<Customer>(customerService.updateCustomer(customer, id), HttpStatus.OK);

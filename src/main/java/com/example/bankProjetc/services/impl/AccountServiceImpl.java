@@ -45,7 +45,7 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public void deleteAccount(long Id) {
-		accountRepo.findById(Id).orElseThrow(() -> new AccountNotFoundException(Id, "Account"));
+		//accountRepo.findById(Id).orElseThrow(() -> new AccountNotFoundException(Id, "Account"));
 		accountRepo.deleteById(Id);
 	}
 

@@ -23,23 +23,26 @@ public class TransactionController {
 	@Autowired
 	TransactionService transactioService;
 
+	@JsonView(TransactionView.post.class)
 	@PostMapping("/transactions")
-	public ResponseEntity<Transaction> createTransaction(
-			@RequestBody @JsonView(value = TransactionView.post.class) Transaction transaction) {
+	public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
 		return new ResponseEntity<Transaction>(transactioService.createTransaction(transaction), HttpStatus.OK);
 	}
 
+	@JsonView(TransactionView.get.class)
 	@GetMapping("/transactions")
 	public List<Transaction> getAllTransactions() {
 		return transactioService.findAllTransactions();
 	}
-
+	
+	@JsonView(TransactionView.get.class)
 	@GetMapping("/transactions/{id}")
 	public ResponseEntity<Transaction> getTransactionById(@PathVariable("id") long TransactionId) {
 		return new ResponseEntity<Transaction>(transactioService.getTransactionById(TransactionId), HttpStatus.OK);
 
 	}
 
+	@JsonView(TransactionView.put.class)
 	@PutMapping("/transactions/{id}")
 	public ResponseEntity<Transaction> updateTransactionDetails(@PathVariable("id") long TransactionId,
 			@RequestBody Transaction transaction) {
@@ -52,5 +55,4 @@ public class TransactionController {
 		transactioService.deleteTransactions(TransactionId);
 		return new ResponseEntity<String>("Transaction of given id is deleted....", HttpStatus.OK);
 	}
-
 }

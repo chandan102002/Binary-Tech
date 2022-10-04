@@ -23,23 +23,27 @@ public class AccountController {
 	@Autowired
 	AccountService accountService;
 
+	@JsonView(value = AccountView.post.class)
 	@PostMapping("/accounts")
-	public ResponseEntity<Account> createAccount(@RequestBody @JsonView(value = AccountView.post.class) Account account) {
+	public ResponseEntity<Account> createAccount(@RequestBody Account account) {
 
 		return new ResponseEntity<Account>(accountService.createAccount(account), HttpStatus.CREATED);
 	}
 
+	@JsonView(value = AccountView.get.class)
 	@GetMapping("/accounts")
 	public List<Account> getAllAccounts() {
 		return accountService.getAllAccounts();
 	}
 
+	@JsonView(value= AccountView.get.class)
 	@GetMapping("/accounts/{id}")
 	public ResponseEntity<Account> getAccountById(@PathVariable("id") long Id) {
 		return new ResponseEntity<Account>(accountService.getAccountById(Id), HttpStatus.OK);
 
 	}
 
+	@JsonView(value= AccountView.put.class)
 	@PutMapping("/accounts/{id}")
 	public ResponseEntity<Account> updateAccount(@PathVariable("id") long AccountId, @RequestBody Account account) {
 		return new ResponseEntity<Account>(accountService.updateAccount(account, AccountId), HttpStatus.OK);

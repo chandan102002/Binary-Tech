@@ -14,20 +14,24 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import com.example.bankProjetc.Views.AccountView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Account")
+@SQLDelete(sql = "UPDATE Account SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
+//@SQLDelete(sql = "UPDATE Account SET deleted = true WHERE id=?")
+//@FilterDef(name = "deletedProductFilter", parameters = @ParamDef(name = "isDeleted", type = "boolean")) // if we want to get deleted data
+//@Filter(name = "deletedProductFilter", condition = "deleted = :isDeleted")
 public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,9 +47,61 @@ public class Account {
 
 	@JsonView(value = AccountView.post.class)
 	private String bankaddress;
+	
+	private boolean isdeleted = Boolean.FALSE;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "customer_account", joinColumns = @JoinColumn(name = "account_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "id"))
 	private List<Customer> customers = new ArrayList<Customer>();
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public Date getOpeningDate() {
+		return openingDate;
+	}
+
+	public void setOpeningDate(Date openingDate) {
+		this.openingDate = openingDate;
+	}
+
+	public long getCurrentBalance() {
+		return currentBalance;
+	}
+
+	public void setCurrentBalance(long currentBalance) {
+		this.currentBalance = currentBalance;
+	}
+
+	public String getBankaddress() {
+		return bankaddress;
+	}
+
+	public void setBankaddress(String bankaddress) {
+		this.bankaddress = bankaddress;
+	}
+
+	public boolean isIsdeleted() {
+		return isdeleted;
+	}
+
+	public void setIsdeleted(boolean isdeleted) {
+		this.isdeleted = isdeleted;
+	}
+
+	public List<Customer> getCustomers() {
+		return customers;
+	}
+
+	public void setCustomers(List<Customer> customers) {
+		this.customers = customers;
+	}
+
+	
 
 }

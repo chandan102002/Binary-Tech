@@ -8,5 +8,9 @@ public interface CustomerView
 	public static interface put{
 		
 	}
+	 
+	public static interface get{
+		
+	}
 
 }

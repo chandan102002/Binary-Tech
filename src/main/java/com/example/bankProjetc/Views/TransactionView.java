@@ -9,4 +9,7 @@ public interface TransactionView
 		
 	}
 
+	public static interface get{
+		
+	}
 }
