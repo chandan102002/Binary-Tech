@@ -27,22 +27,22 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	
-	@JsonView(value = CustomerView.post.class)
+	@JsonView(value = {CustomerView.post.class, CustomerView.get.class})
 	private long id;
 	
-	@JsonView(value = CustomerView.post.class)
+	@JsonView(value = {CustomerView.post.class, CustomerView.get.class})
 	private long accountid;
 	
-	@JsonView(value = CustomerView.post.class)
+	@JsonView(value = {CustomerView.post.class,CustomerView.get.class})
 	private String name;
 	
-	@JsonView(value = CustomerView.post.class)
+	@JsonView(value = {CustomerView.post.class, CustomerView.get.class})
 	private String address;
 	
-	@JsonView(value = CustomerView.post.class)
+	@JsonView(value = {CustomerView.post.class, CustomerView.get.class})
 	private long phone;
 	
-	@JsonView(value = CustomerView.post.class)
+	@JsonView(value = {CustomerView.post.class, CustomerView.get.class})
 	private String email;
 	
 	private boolean isdeleted = Boolean.FALSE;

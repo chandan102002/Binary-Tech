@@ -27,16 +27,16 @@ import lombok.NoArgsConstructor;
 public class Transaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonView(value =TransactionView.post.class)
+	@JsonView(value = { TransactionView.post.class, TransactionView.get.class})
 	private long id;
 	
-	@JsonView(value =TransactionView.post.class)
+	@JsonView(value = { TransactionView.post.class, TransactionView.get.class})
 	private Date date;
 	
-	@JsonView(value =TransactionView.post.class)
+	@JsonView(value = { TransactionView.post.class, TransactionView.get.class})
 	private float amout;
 	
-	@JsonView(value =TransactionView.post.class)
+	@JsonView(value = { TransactionView.post.class, TransactionView.get.class})
 	private String bankaddress;
 	
 	private boolean isdeleted = Boolean.FALSE;

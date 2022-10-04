@@ -24,7 +24,7 @@ public class AccountController {
 	AccountService accountService;
 
 	@JsonView(value = AccountView.post.class)
-	@PostMapping("/accounts")
+    @PostMapping("/accounts")
 	public ResponseEntity<Account> createAccount(@RequestBody Account account) {
 
 		return new ResponseEntity<Account>(accountService.createAccount(account), HttpStatus.CREATED);
