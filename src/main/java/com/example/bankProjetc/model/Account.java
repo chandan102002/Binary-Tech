@@ -51,7 +51,7 @@ public class Account {
 	private boolean isdeleted = Boolean.FALSE;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "customer_account", joinColumns = @JoinColumn(name = "account_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "id"))
+	@JoinTable(name = "customers_account", joinColumns = @JoinColumn(name = "account_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "id"))
 	private List<Customer> customers = new ArrayList<Customer>();
 
 	public long getId() {
