@@ -1,53 +1,58 @@
 package com.example.bankProjetc.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankProjetc.Views.CustomerView;
 import com.example.bankProjetc.model.Customer;
 import com.example.bankProjetc.services.CustomerService;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
 public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 
-	@PostMapping("/post")
-	public ResponseEntity<Customer> saveCustomer(@RequestBody Customer customer) {
+	@JsonView(CustomerView.post.class)
+	@PostMapping("/customers")
+	public Customer saveCustomer(@RequestBody Customer customer) {
 
-		return new ResponseEntity<Customer>(customerService.saveCustomer(customer), HttpStatus.CREATED);
+		return customerService.saveCustomer(customer);
 	}
 
-	@GetMapping("/get")
+	@JsonView(CustomerView.get.class)
+	@GetMapping("/customers")
 	public List<Customer> getAllCustomers() {
 		return customerService.getAllCustomers();
 	}
 
-	// http://localhost:8080/get/1
-	@GetMapping("/get/{id}")
+	@JsonView(CustomerView.get.class)
+	@GetMapping("/customers/{id}")
 	public ResponseEntity<Customer> getCustomerById(@PathVariable("id") long id) {
-		return new ResponseEntity<Customer>(customerService.getCustomerByCustomerId(id), HttpStatus.OK);
+		return new ResponseEntity<Customer>(customerService.getCustomerById(id), HttpStatus.OK);
 
 	}
 
-	@PutMapping("/put/{id}")
+	@JsonView(CustomerView.put.class)
+	@PutMapping("/customers/{id}")
 	public ResponseEntity<Customer> updateCustomer(@PathVariable("id") long id, @RequestBody Customer customer) {
 		return new ResponseEntity<Customer>(customerService.updateCustomer(customer, id), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/customers/{id}")
 	public ResponseEntity<String> deleteCustomer(@PathVariable("id") long id) {
 
-		customerService.deleteCustomer(id);
+        customerService.deleteCustomer(id);
 		return new ResponseEntity<String>("Customer deleted successfully", HttpStatus.OK);
 
 	}

@@ -13,42 +13,46 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.bankProjetc.Views.AccountView;
 import com.example.bankProjetc.model.Account;
 import com.example.bankProjetc.services.AccountService;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @RestController
-public class AccountController 
-{
+public class AccountController {
 	@Autowired
 	AccountService accountService;
 
-	@PostMapping("/save")
+	@JsonView(value = AccountView.post.class)
+    @PostMapping("/accounts")
 	public ResponseEntity<Account> createAccount(@RequestBody Account account) {
 
 		return new ResponseEntity<Account>(accountService.createAccount(account), HttpStatus.CREATED);
 	}
 
-	@GetMapping("/getAccount")
+	@JsonView(value = AccountView.get.class)
+	@GetMapping("/accounts")
 	public List<Account> getAllAccounts() {
 		return accountService.getAllAccounts();
 	}
 
-	// http://localhost:8080/get/1
-	@GetMapping("/getAccount/{id}")
-	public ResponseEntity<Account> getAccountByAccountId(@PathVariable("id") long AccountId) {
-		return new ResponseEntity<Account>(accountService.getAccountByAccountId(AccountId), HttpStatus.OK);
+	@JsonView(value= AccountView.get.class)
+	@GetMapping("/accounts/{id}")
+	public ResponseEntity<Account> getAccountById(@PathVariable("id") long Id) {
+		return new ResponseEntity<Account>(accountService.getAccountById(Id), HttpStatus.OK);
 
 	}
 
-	@PutMapping("/updateAccount/{id}")
-	public ResponseEntity<Account> updateCustomer(@PathVariable("id") long AccountId, @RequestBody Account account) {
+	@JsonView(value= AccountView.put.class)
+	@PutMapping("/accounts/{id}")
+	public ResponseEntity<Account> updateAccount(@PathVariable("id") long AccountId, @RequestBody Account account) {
 		return new ResponseEntity<Account>(accountService.updateAccount(account, AccountId), HttpStatus.OK);
 	}
 
-	@DeleteMapping("/deleteAccount/{id}")
-	public ResponseEntity<String> deleteAccount(@PathVariable("id") long AccountId) {
+	@DeleteMapping("/accounts/{id}")
+	public ResponseEntity<String> deleteAccount(@PathVariable("id") long Id) {
 
-		accountService.deleteAccount(AccountId);
+		accountService.deleteAccount(Id);
 
 		return new ResponseEntity<String>("Your Account is deleted successfully..", HttpStatus.OK);
 
