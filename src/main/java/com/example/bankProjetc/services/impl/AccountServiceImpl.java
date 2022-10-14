@@ -44,9 +44,15 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public void deleteAccount(long Id) {
+	public void deleteAccount(long Id)
+	{
+		Account account= getAccountById(Id);
+		account.setIsdeleted(true);
+		accountRepo.save(account);
+		
 		//accountRepo.findById(Id).orElseThrow(() -> new AccountNotFoundException(Id, "Account"));
-		accountRepo.deleteById(Id);
+		//accountRepo.deleteById(Id);
+		//accountRepo.delete1(true);
 	}
 
 }

@@ -45,7 +45,7 @@ public class Customer {
 	@JsonView(value = {CustomerView.post.class, CustomerView.get.class})
 	private String email;
 	
-	private boolean isdeleted = Boolean.FALSE;
+	private boolean isdeleted ;
 
 
 	@JsonIgnore

@@ -39,7 +39,7 @@ public class Transaction {
 	@JsonView(value = { TransactionView.post.class, TransactionView.get.class})
 	private String bankaddress;
 	
-	private boolean isdeleted = Boolean.FALSE;
+	private boolean isdeleted ;
 
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

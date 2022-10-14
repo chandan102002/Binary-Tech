@@ -27,11 +27,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Account")
-@SQLDelete(sql = "UPDATE Account SET deleted = true WHERE id=?")
-@Where(clause = "isdeleted=false")
-//@SQLDelete(sql = "UPDATE Account SET deleted = true WHERE id=?")
-//@FilterDef(name = "deletedProductFilter", parameters = @ParamDef(name = "isDeleted", type = "boolean")) // if we want to get deleted data
-//@Filter(name = "deletedProductFilter", condition = "deleted = :isDeleted")
 public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +43,7 @@ public class Account {
 	@JsonView(value = {AccountView.post.class, AccountView.get.class})
 	private String bankaddress;
 	
-	private boolean isdeleted = Boolean.FALSE;
+	private boolean isdeleted ;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "customers_account", joinColumns = @JoinColumn(name = "account_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "id"))

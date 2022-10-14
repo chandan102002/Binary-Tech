@@ -7,4 +7,5 @@ import com.example.bankProjetc.model.Account;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
+
 }

@@ -44,9 +44,15 @@ public class TransactionServiceImpl implements TransactionService {
 	}
 
 	@Override
-	public void deleteTransactions(long Id) {
-		transactionRepo.findById(Id).orElseThrow(() -> new TransactionNotFoundException(Id, "transation"));
-		transactionRepo.deleteById(Id);
+	public void deleteTransactions(long Id) 
+	{
+		Transaction tra= getTransactionById(Id);
+		tra.setIsdeleted(true);
+		transactionRepo.save(tra);
+		
+	//	transactionRepo.findById(Id).orElseThrow(() -> new TransactionNotFoundException(Id, "transation"));
+	//	transactionRepo.deleteById(Id);
+	//	transactionRepo.deleteTransaction(true);
 
 	}
 
